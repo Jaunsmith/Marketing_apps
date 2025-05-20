@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:market_app/utilities/items_list.dart';
 import 'package:market_app/utilities/product_card.dart';
 import 'package:market_app/widgets/dynamic_size.dart';
 import 'package:market_app/widgets/extension.dart';
@@ -133,13 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       20.height,
                       MainText(text: 'Best Seller'),
                       20.height,
-                      ProductCard(
-                        name: 'Short Sleeves',
-                        position: 'bottoms',
-                        price: '\$10.5',
-                        imageUrl:
-                            'https://img.kwcdn.com/thumbnail/s/f19126e0f43395586d4b53f062dda744_ca3808ddd197.jpg?imageView2/2/w/800/q/70/format/webp',
-                      ),
+                      ItemsList(),
                     ],
                   ),
                 ),

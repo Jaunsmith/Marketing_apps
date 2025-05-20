@@ -11,27 +11,31 @@ class ProductCard extends StatelessWidget {
     required this.position,
     required this.price,
     required this.imageUrl,
+    this.height,
   });
 
   final String name;
   final String position;
   final String price;
   final String imageUrl;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      padding: EdgeInsets.only(right: 8),
+      margin: EdgeInsets.only(bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 150,
+            height: height ?? 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),
+              color: Colors.grey.shade500,
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.only(
@@ -40,6 +44,7 @@ class ProductCard extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
+                fit: BoxFit.cover,
                 placeholder:
                     (context, url) => Center(
                       child: CircularProgressIndicator.adaptive(
@@ -50,24 +55,32 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           10.height,
-          MainText(text: name, fontSize: 12),
-          5.height,
-          SubText(text: position),
-          5.height,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MainText(text: price, fontSize: 12),
-              Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(width: 1.5),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MainText(text: name, fontSize: 12),
+                5.height,
+                SubText(text: position),
+                5.height,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(child: MainText(text: price, fontSize: 12)),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(11),
+                        border: Border.all(width: 1.5),
+                      ),
+                      child: Center(child: Icon(Icons.add, size: 16)),
+                    ),
+                  ],
                 ),
-                child: Icon(Icons.add),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

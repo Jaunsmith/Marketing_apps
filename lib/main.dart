@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:market_app/screens/product_details_screen.dart';
 import 'package:market_app/utilities/nav_bar.dart';
 import 'package:market_app/widgets/dynamic_size.dart';
+import 'package:market_app/widgets/testing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: NavBar(),
+      home: ProductDetailsScreen(),
     );
   }
 }
