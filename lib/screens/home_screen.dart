@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:market_app/screens/product_details_screen.dart';
 import 'package:market_app/utilities/items_list.dart';
-import 'package:market_app/utilities/product_card.dart';
 import 'package:market_app/widgets/dynamic_size.dart';
 import 'package:market_app/widgets/extension.dart';
+import 'package:market_app/widgets/image_links.dart';
 import 'package:market_app/widgets/main_text.dart';
 import 'package:market_app/widgets/sub_text.dart';
 
@@ -16,13 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> imageLink = [
-    'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ',
-    'https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI',
-    'https://fastly.picsum.photos/id/21/3008/2008.jpg?hmac=T8DSVNvP-QldCew7WD4jj_S3mWwxZPqdF0CNPksSko4',
-    'https://fastly.picsum.photos/id/28/4928/3264.jpg?hmac=GnYF-RnBUg44PFfU5pcw_Qs0ReOyStdnZ8MtQWJqTfA',
-    'https://fastly.picsum.photos/id/29/4000/2670.jpg?hmac=rCbRAl24FzrSzwlR5tL-Aqzyu5tX_PA95VJtnUXegGU',
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,11 +90,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         height: 150,
                         child: PageView.builder(
-                          itemCount: imageLink.length,
+                          itemCount: ImageLinks.imageLinks.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
                                 print('The index number : $index  clicked');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) =>
+                                            ProductDetailsScreen(index: index),
+                                  ),
+                                );
                               },
                               child: Container(
                                 margin: EdgeInsets.only(right: 10),
@@ -112,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: CachedNetworkImage(
-                                    imageUrl: imageLink[index],
+                                    imageUrl: ImageLinks.imageLinks[index],
                                     fit: BoxFit.cover,
                                     placeholder:
                                         (context, url) => Center(
